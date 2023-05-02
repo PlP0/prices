@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crypto Prices</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* Add any custom CSS styles here */
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Crypto Prices</h1>
+    </header>
+    <main>
+      <div id="crypto-prices"></div>
+    </main>
+    <footer>
+      <p>&copy; 2023 Your Name</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // API endpoint URL
+        var url = "https://api.coinmarketcap.com/v1/ticker/?limit=10";
+        
+        // Fetch data from API
+        $.getJSON(url, function(data) {
+          // Loop through each crypto and display the name and price
+          $.each(data, function(index, crypto) {
+            var name = crypto.name;
+            var price = crypto.price_usd;
+            var html = "<h2>" + name + ": $" + price + "</h2>";
+            $("#crypto-prices").append(html);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
